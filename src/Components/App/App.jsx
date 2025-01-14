@@ -1,9 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, {useState} from 'react';
+//import reactLogo from '../../assets/react.svg'
+//import viteLogo from '../../../public/vite.svg'
+import styles from './App.module.css';
+import SearchBar from '../SearchBar/SearchBar';
+import SearchResults from '../SearchResults/SearchResults';
+import Playlist from '../Playlist/Playlist';
 
 function App() {
+  return (
+    <div>
+      <h1>
+        Ja<span className={styles.highlight}>mmm</span>ing
+      </h1>
+      <div className={styles.App}>
+        <SearchBar />
+        <div className={styles["App-playlist"]}>
+          <SearchResults />
+          <Playlist />
+        </div>
+      </div>
+
+    </div>
+  );
+  /*
   const [count, setCount] = useState(0)
 
   return (
@@ -29,7 +48,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  )*/
 }
 
-export default App
+export default App;
