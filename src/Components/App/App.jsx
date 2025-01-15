@@ -7,6 +7,37 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 
 function App() {
+  const [searchResults, setSearchResults] = useState([
+    {
+      name: "Example Track Name 1",
+      artist: "Example Track Artist 1",
+      album: "Example Track Album 1",
+      id: 1,
+    },
+    {
+      name: "Example Track Name 2",
+      artist: "Example Track Artist 2",
+      album: "Example Track Album 2",
+      id: 2,
+    },
+  ]);
+
+  const [playlistName, setPlaylistName] = useState("Example Playlist Name!");
+  const [playlistTracks, setPlaylistTracks] = useState([
+    {
+      name: "Example Playlist Name 1",
+      artist: "Example Playlist Artist 1",
+      album: "Example Playlist Album 2",
+      id: 11,
+    },
+    {
+      name: "Example Playlist Name 2",
+      artist: "Example Playlist Artist 2",
+      album: "Example Playlist Album 2",
+      id: 22,
+    },
+  ]);
+
   return (
     <div>
       <h1>
@@ -15,8 +46,8 @@ function App() {
       <div className={styles.App}>
         <SearchBar />
         <div className={styles["App-playlist"]}>
-          <SearchResults />
-          <Playlist />
+          <SearchResults userSearchResults={searchResults}/>
+          <Playlist userPlaylistName={playlistName} userPlayListTracks={playlistTracks}/>
         </div>
       </div>
 
