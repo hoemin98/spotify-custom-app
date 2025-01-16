@@ -38,6 +38,30 @@ function App() {
     },
   ]);
 
+  function addTrack(track){
+    if(playlistTracks.find((savedTrack) => savedTrack.id === track.id)){
+      console.log("Track already exists")
+    } else {
+      setPlaylistTracks((prevTracks)=> [...prevTracks, track])
+    }
+    /*
+    const existingTrack = playlistTracks.find((t) => t.id === track.id);
+    const newTrack = playlistTracks.concat(track);
+    if (existingTrack) {
+      console.log("Track already exists");
+    } else {
+      setPlaylistTracks(newTrack);
+    }
+    */
+  };
+
+  function removeTrack(track){
+    const newTracklist = playlistTracks.filter((t)=>(
+      t.id !== track.id
+    ));
+    setPlaylistTracks(newTracklist);
+  }
+
   return (
     <div>
       <h1>
@@ -46,8 +70,8 @@ function App() {
       <div className={styles.App}>
         <SearchBar />
         <div className={styles["App-playlist"]}>
-          <SearchResults userSearchResults={searchResults}/>
-          <Playlist userPlaylistName={playlistName} userPlayListTracks={playlistTracks}/>
+          <SearchResults userSearchResults={searchResults} onAdd={addTrack} />
+          <Playlist userPlaylistName={playlistName} userPlayListTracks={playlistTracks} onRemove={removeTrack}/>
         </div>
       </div>
 

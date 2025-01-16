@@ -6,13 +6,21 @@ function Track(props){
     function renderAction(){
         if(props.isRemoval){
             return (
-                <button className={styles["Track-action"]}>-</button>
+                <button className={styles["Track-action"]} onClick={pullOutTrack}>-</button>
             )
         } else {
             return (
-                <button className={styles["Track-action"]}>+</button>
+                <button className={styles["Track-action"]} onClick={passTrack}>+</button>
             )
         };
+    }
+
+    function passTrack(){
+        props.onAdd(props.track);
+    }
+
+    function pullOutTrack(){
+        props.onRemove(props.track);
     }
 
     return(
