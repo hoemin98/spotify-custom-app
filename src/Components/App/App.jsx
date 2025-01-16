@@ -60,7 +60,11 @@ function App() {
       t.id !== track.id
     ));
     setPlaylistTracks(newTracklist);
-  }
+  };
+
+  function updatePlaylistName(name){
+    setPlaylistName(name);
+  };
 
   return (
     <div>
@@ -71,7 +75,7 @@ function App() {
         <SearchBar />
         <div className={styles["App-playlist"]}>
           <SearchResults userSearchResults={searchResults} onAdd={addTrack} />
-          <Playlist userPlaylistName={playlistName} userPlayListTracks={playlistTracks} onRemove={removeTrack}/>
+          <Playlist userPlaylistName={playlistName} userPlayListTracks={playlistTracks} onRemove={removeTrack} onNameChange={updatePlaylistName}/>
         </div>
       </div>
 
