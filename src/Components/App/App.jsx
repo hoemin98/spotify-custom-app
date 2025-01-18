@@ -5,6 +5,7 @@ import styles from './App.module.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
+import { Spotify } from '../../util/Spotify/Spotify';
 
 function App() {
   const [searchResults, setSearchResults] = useState([
@@ -22,7 +23,7 @@ function App() {
     },
   ]);
 
-  const [playlistName, setPlaylistName] = useState("Example Playlist Name!");
+  const [playlistName, setPlaylistName] = useState("Example Playlist Name");
   const [playlistTracks, setPlaylistTracks] = useState([
     {
       name: "Example Playlist Name 1",
@@ -70,11 +71,20 @@ function App() {
     const trackURIs = playlistTracks.map((t) => (
       t.uri
     ));
-
-  };
+    const name = playlistName;
+    Spotify.savePlaylistName(name, trackURIs)
+    .then(()=> {
+      updatePlaylistName("New Playlist");
+      setPlaylistTracks([]);
+    });
+  }
 
   function searchTrack(searchTerm){
-    console.log(searchTerm)
+    Spotify.searchTerm(searchTerm)
+      .then((result) => {
+        setSearchResults(result);
+      });
+    console.log(searchTerm);
   }
 
   return (
